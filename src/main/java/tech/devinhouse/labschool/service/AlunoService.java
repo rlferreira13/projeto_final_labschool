@@ -3,9 +3,7 @@ package tech.devinhouse.labschool.service;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tech.devinhouse.labschool.model.Aluno;
-import tech.devinhouse.labschool.model.SituacaoMatricula;
 import tech.devinhouse.labschool.repository.AlunoRepository;
-
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Optional;

@@ -1,18 +1,18 @@
 package tech.devinhouse.labschool.dto;
 
+import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
-import tech.devinhouse.labschool.model.Pessoa;
 import tech.devinhouse.labschool.model.SituacaoMatricula;
-
 import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.validation.constraints.*;
 import java.time.LocalDate;
 
+@Data
 public class AlunoRequest {
 
-        @NotEmpty
+        @NotNull
         @Enumerated(EnumType.STRING)
         private SituacaoMatricula situacao;
 
@@ -35,5 +35,8 @@ public class AlunoRequest {
 
         @NotNull
         private Long cpf;
+
+        @NotNull
+        private Integer atendimentosPedagogicos=0;
 
 }
