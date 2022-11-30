@@ -31,4 +31,11 @@ public class Pessoa {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer codigo;
+
+    public Pessoa(String nome, String telefone, LocalDate dataNascimento, Long cpf) {
+        this.nome = nome;
+        this.telefone = telefone;
+        this.dataNascimento = dataNascimento;
+        this.cpf = cpf;
+    }
 }

@@ -3,9 +3,7 @@ package tech.devinhouse.labschool.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
@@ -24,16 +22,19 @@ public class Aluno extends Pessoa{
         this.nota = nota;
     }
 
-    @Column (name="situacao")
-    @NotNull
+    @Enumerated(EnumType.STRING)
     private SituacaoMatricula situacao;
 
     @Column (name="atendimentos")
     private Integer atendimentosPedagogicos = 0;
 
-    @Column (name = "nota")
-    @NotNull
     private Float nota;
+
+    public Aluno(String nome, String telefone, LocalDate dataNascimento, Long cpf, SituacaoMatricula situacao, Float nota) {
+        super(nome,telefone,dataNascimento,cpf);
+        this.situacao = situacao;
+        this.nota = nota;
+    }
 
     public SituacaoMatricula getSituacao() {
         return situacao;

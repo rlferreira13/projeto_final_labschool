@@ -7,6 +7,7 @@ import tech.devinhouse.labschool.model.SituacaoMatricula;
 import tech.devinhouse.labschool.repository.AlunoRepository;
 
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -33,5 +34,9 @@ public class AlunoService {
         alunoBD.setSituacao(aluno.getSituacao());
         repo.save(alunoBD);
         return alunoBD;
+    }
+    public List<Aluno> listarAlunos(){
+        List<Aluno>listaAlunos = repo.findAll();
+        return listaAlunos;
     }
     }
