@@ -37,4 +37,4 @@ public class AlunoService {
     public List<Aluno> listarAlunos(){
         return repo.findAll();
     }
-    }
+}
