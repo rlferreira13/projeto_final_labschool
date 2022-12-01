@@ -35,8 +35,6 @@ public class AlunoRequest {
 
         @NotNull
         private Long cpf;
-
-        @NotNull
-        private Integer atendimentosPedagogicos=0;
+        
 
 }

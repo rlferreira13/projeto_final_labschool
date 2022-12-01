@@ -24,11 +24,11 @@ public class AlunoController {
     private ModelMapper mapper;
 
     @PostMapping
-    public ResponseEntity<AlunoRequest> criar(@RequestBody @Valid AlunoRequest request){
+    public ResponseEntity<AlunoResponse> criar(@RequestBody @Valid AlunoRequest request){
         Aluno aluno = mapper.map (request, Aluno.class);
         aluno = service.criar(aluno);
         AlunoResponse resp = mapper.map (aluno, AlunoResponse.class);
-        return ResponseEntity.created(URI.create(resp.getCodigo().toString())).body(request);
+        return ResponseEntity.created(URI.create(resp.getCodigo().toString())).body(resp)   ;
     }
     @PutMapping("{codigo}")
     public ResponseEntity<AlunoResponse> atualizar(@PathVariable("codigo")Integer codigo, @RequestBody @Valid MatriculaRequest situacao) {

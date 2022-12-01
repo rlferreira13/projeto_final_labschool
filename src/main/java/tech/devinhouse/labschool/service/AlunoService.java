@@ -20,6 +20,7 @@ public class AlunoService {
         if (existe){
             throw new RuntimeException("Usuário já cadastrado.");
         }
+        aluno.setAtendimentosPedagogicos(0);
         aluno = repo.save(aluno);
         return aluno;
     }
@@ -34,7 +35,6 @@ public class AlunoService {
         return alunoBD;
     }
     public List<Aluno> listarAlunos(){
-        List<Aluno>listaAlunos = repo.findAll();
-        return listaAlunos;
+        return repo.findAll();
     }
     }
