@@ -12,6 +12,7 @@ import tech.devinhouse.labschool.model.Aluno;
 import tech.devinhouse.labschool.service.AlunoService;
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -39,8 +40,20 @@ public class AlunoController {
         return ResponseEntity.ok(resp);
     }
     @GetMapping
-    public List<Aluno> listarAlunos(){
-        return service.listarAlunos();
+    public ResponseEntity<List<AlunoResponse>> listarAlunos(@RequestParam (value = "situacao",required = false)String situacao){
+        List<Aluno>alunos;
+        if (situacao == null)
+            alunos = service.listarAlunos();
+        else
+            alunos = service.listarAlunosPorSituacao(situacao);
+        List<AlunoResponse>resp = new ArrayList<>();
+        for (Aluno aluno:alunos){
+            AlunoResponse alunoResponse = mapper.map(aluno, AlunoResponse.class);
+            resp.add(alunoResponse);
+        }
+        return ResponseEntity.ok(resp);
     }
+
+
 
 }
