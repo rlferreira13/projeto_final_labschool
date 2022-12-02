@@ -15,4 +15,7 @@ public interface AlunoRepository extends JpaRepository<Aluno, Integer> {
     boolean existsByCpf(Long cpf);
 
     List<Aluno> findBySituacao(SituacaoMatricula situacao);
+
+    Aluno findByCodigo(Integer codigo);
+
 }

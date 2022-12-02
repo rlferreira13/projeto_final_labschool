@@ -2,7 +2,6 @@ package tech.devinhouse.labschool.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 import tech.devinhouse.labschool.model.Aluno;
 import tech.devinhouse.labschool.model.SituacaoMatricula;
 import tech.devinhouse.labschool.repository.AlunoRepository;
@@ -41,7 +40,15 @@ public class AlunoService {
     }
 
     public List<Aluno> listarAlunosPorSituacao (String situacao){
-        SituacaoMatricula situacaomatricula = SituacaoMatricula.valueOf(situacao);
+        SituacaoMatricula situacaomatricula = SituacaoMatricula.valueOf(situacao.toUpperCase());
         return repo.findBySituacao(situacaomatricula);
+    }
+    public Aluno listarAlunosPorId(Integer codigo) {
+        return repo.findByCodigo(codigo);
+    }
+    public void deletarAluno(Integer codigo) {
+        if (!repo.existsById(codigo))
+            throw new InputMismatchException("Aluno não existe");
+        repo.deleteById(codigo);
     }
 }

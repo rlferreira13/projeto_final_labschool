@@ -1,10 +1,12 @@
 package tech.devinhouse.labschool.dto;
 
 import lombok.Data;
+
 import java.time.LocalDate;
+
 @Data
 
-public class AlunoResponse {
+public class PedagogoResponse {
 
     private Integer codigo;
     private String nome;

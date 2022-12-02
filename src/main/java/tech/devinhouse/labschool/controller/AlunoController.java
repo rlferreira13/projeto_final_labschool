@@ -40,7 +40,7 @@ public class AlunoController {
         return ResponseEntity.ok(resp);
     }
     @GetMapping
-    public ResponseEntity<List<AlunoResponse>> listarAlunos(@RequestParam (value = "situacao",required = false)String situacao){
+    public ResponseEntity<List<AlunoResponse>> listarAlunos(@RequestParam  (value = "situacao",required = false)String situacao){
         List<Aluno>alunos;
         if (situacao == null)
             alunos = service.listarAlunos();
@@ -53,7 +53,17 @@ public class AlunoController {
         }
         return ResponseEntity.ok(resp);
     }
-
+    @GetMapping("{codigo}")
+    public ResponseEntity<AlunoResponse> listarAlunos(@PathVariable("codigo")  Integer codigo){
+        Aluno aluno = service.listarAlunosPorId(codigo);
+        AlunoResponse resp = mapper.map(aluno, AlunoResponse.class);
+        return ResponseEntity.ok(resp);
+    }
+    @DeleteMapping("{codigo}")
+    public ResponseEntity<AlunoResponse> deletarAluno(@PathVariable("codigo")  Integer codigo){
+        service.deletarAluno(codigo);
+        return ResponseEntity.noContent().build();
+    }
 
 
 }
