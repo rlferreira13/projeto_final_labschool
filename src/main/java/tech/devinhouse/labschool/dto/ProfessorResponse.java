@@ -1,6 +1,7 @@
 package tech.devinhouse.labschool.dto;
 
 import lombok.Data;
+import tech.devinhouse.labschool.model.Estado;
 import tech.devinhouse.labschool.model.ExperienciaEmDesenvolvimento;
 import tech.devinhouse.labschool.model.FormacaoAcademica;
 
@@ -17,6 +18,6 @@ public class ProfessorResponse {
     private long cpf;
     private FormacaoAcademica formacao;
     private ExperienciaEmDesenvolvimento experiencia;
-    private EstadoRequest estado;
+    private Estado estado;
 
 }

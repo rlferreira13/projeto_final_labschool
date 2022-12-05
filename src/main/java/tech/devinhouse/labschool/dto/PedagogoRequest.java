@@ -3,7 +3,6 @@ package tech.devinhouse.labschool.dto;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 import tech.devinhouse.labschool.model.SituacaoMatricula;
-
 import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;

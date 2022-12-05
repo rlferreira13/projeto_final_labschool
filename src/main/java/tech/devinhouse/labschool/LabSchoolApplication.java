@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Bean;
 import tech.devinhouse.labschool.model.*;
 import tech.devinhouse.labschool.service.AlunoService;
 import tech.devinhouse.labschool.service.ProfessorService;
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -42,7 +41,7 @@ public class LabSchoolApplication {
             List<Professor> lista = professorService.listarProfessores();
             if (lista.isEmpty()) {
                 professorService.criar(new Professor("Marcio","47 3333-3333",LocalDate.of(1966,7,1),12345678910L, FormacaoAcademica.MESTRADO, ExperienciaEmDesenvolvimento.FRONT_END,Estado.ATIVO));
-                professorService.criar(new Professor("Ivany","47 3333-3333",LocalDate.of(1947,7,6),109876543210L, FormacaoAcademica.GRADUACAO_INCOMPLETA, ExperienciaEmDesenvolvimento.BACK_END,Estado.INATIVO));
+                professorService.criar(new Professor("Ivany","47 3333-3333",LocalDate.of(1947,7,6),109876543210L, FormacaoAcademica.GRADUACAO_INCOMPLETA, ExperienciaEmDesenvolvimento.BACK_END,Estado.ATIVO));
                 professorService.criar(new Professor("Edil","47 3333-3333",LocalDate.of(1966,7,1),10203040501L, FormacaoAcademica.DOUTORADO, ExperienciaEmDesenvolvimento.FULL_STACK,Estado.ATIVO));
             }
         };

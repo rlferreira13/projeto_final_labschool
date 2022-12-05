@@ -2,6 +2,9 @@ package tech.devinhouse.labschool.dto;
 
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
+import tech.devinhouse.labschool.model.Estado;
+import tech.devinhouse.labschool.model.ExperienciaEmDesenvolvimento;
+import tech.devinhouse.labschool.model.FormacaoAcademica;
 import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -28,14 +31,14 @@ public class ProfessorRequest {
 
         @NotNull
       @Enumerated(EnumType.STRING)
-        private String formacao;
+        private FormacaoAcademica formacao;
 
         @NotNull
         @Enumerated(EnumType.STRING)
-        private String experiencia;
+        private ExperienciaEmDesenvolvimento experiencia;
 
         @NotNull
         @Enumerated(EnumType.STRING)
-        private String estado;
+        private Estado estado;
 
 }
