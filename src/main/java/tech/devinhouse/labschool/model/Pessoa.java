@@ -14,17 +14,17 @@ import java.time.LocalDate;
 @NoArgsConstructor
 
 public class Pessoa {
-    @NotNull
+   // @NotNull
     private String nome;
 
-    @NotNull
+   // @NotNull
     private String telefone;
 
     @Column (name ="data_nascimento")
-    @NotNull
+  //  @NotNull
     private LocalDate dataNascimento;
 
-    @NotNull
+  //  @NotNull
     private Long cpf;
 
     @Id

@@ -21,7 +21,7 @@ import java.util.List;
 @AllArgsConstructor
 @Validated
 public class AlunoController {
-    public AlunoService service;
+    private AlunoService service;
     private ModelMapper mapper;
 
     @PostMapping

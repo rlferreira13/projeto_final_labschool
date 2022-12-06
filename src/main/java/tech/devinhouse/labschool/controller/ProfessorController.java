@@ -19,7 +19,7 @@ import java.util.List;
 @AllArgsConstructor
 @Validated
 public class ProfessorController {
-    public ProfessorService service;
+    private ProfessorService service;
     private ModelMapper mapper;
 
     @PostMapping

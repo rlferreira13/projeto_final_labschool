@@ -13,8 +13,6 @@ public class PedagogoResponse {
     private String telefone;
     private LocalDate dataNascimento;
     private long cpf;
-    private String situacao;
-    private Float nota;
     private Integer atendimentosPedagogicos;
 
 }
