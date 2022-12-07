@@ -21,14 +21,26 @@ import java.util.List;
 @RestController
 @RequestMapping("api/atendimentos")
 @AllArgsConstructor
-@Validated
 public class AtendimentoPedagogicoController {
+
     private AtendimentoPedagogicoService service;
     private AlunoService alunoService;
     private PedagogoService pedagogoService;
     private ModelMapper mapper;
 
+    @PutMapping
+    public ResponseEntity<AtendimentoPedagogicoResponse> cadastrarAtendimentoPedagogico(@RequestBody AtendimentoPedagogicoRequest request){
+        Boolean operacaoComSucesso = service.cadastrarAtendimentoPedagogico(request.getCodigoAluno(), request.getCodigoPedagogo());
+        AtendimentoPedagogicoResponse response = new AtendimentoPedagogicoResponse();
 
+        if (!operacaoComSucesso){
+            return ResponseEntity.notFound().build();
+        }
+        response.setAluno(alunoService.listarAlunosPorId(request.getCodigoAluno()));
+        response.setPedagogo(pedagogoService.listarPedagogosPorId(request.getCodigoPedagogo()));
+
+        return ResponseEntity.ok(response);
+    }
 
 
 

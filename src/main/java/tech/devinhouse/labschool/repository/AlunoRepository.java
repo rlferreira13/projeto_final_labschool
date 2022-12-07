@@ -18,4 +18,6 @@ public interface AlunoRepository extends JpaRepository<Aluno, Integer> {
 
     Aluno findByCodigo(Integer codigo);
 
+    Boolean existsByCodigo(Integer codigo);
+
 }

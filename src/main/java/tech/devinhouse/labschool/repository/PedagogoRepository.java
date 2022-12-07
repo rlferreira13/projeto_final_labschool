@@ -13,4 +13,6 @@ public interface PedagogoRepository extends JpaRepository<Pedagogo, Integer> {
 
     Pedagogo findByCodigo(Integer codigo);
 
+    Boolean existsByCodigo(Integer codigo);
+
 }
