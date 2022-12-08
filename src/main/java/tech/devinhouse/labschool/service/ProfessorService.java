@@ -2,6 +2,8 @@ package tech.devinhouse.labschool.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import tech.devinhouse.labschool.exception.RegistroExistenteException;
+import tech.devinhouse.labschool.exception.RegistroNaoEncontradoException;
 import tech.devinhouse.labschool.model.Estado;
 import tech.devinhouse.labschool.model.Professor;
 import tech.devinhouse.labschool.repository.ProfessorRepository;
@@ -19,7 +21,7 @@ public class ProfessorService {
     public Professor criar (Professor professor){
         boolean existe = repo.existsByCpf(professor.getCpf());
         if (existe){
-            throw new RuntimeException("Usuário já cadastrado.");
+            throw new RegistroExistenteException("Professor", professor.getCpf());
         }
         professor = repo.save(professor);
         return professor;
@@ -27,7 +29,7 @@ public class ProfessorService {
     public Professor atualizar(Professor professor) {
         Optional<Professor> professorOpt = repo.findById(professor.getCodigo());
         if (professorOpt.isEmpty())
-            throw new InputMismatchException("Perfil não encontrado");
+            throw new RegistroNaoEncontradoException("Professor",professor.getCodigo());
         Professor professorBD = professorOpt.get();
         professorBD.setEstado(professor.getEstado());
         repo.save(professorBD);
@@ -42,7 +44,7 @@ public class ProfessorService {
     }
     public void deletarProfessor(Integer codigo) {
         if (!repo.existsById(codigo))
-            throw new InputMismatchException("Professor não existe");
+            throw new RegistroNaoEncontradoException("Professor", codigo);
         repo.deleteById(codigo);
     }
     public Professor listarProfessorPorId(Integer codigo) {

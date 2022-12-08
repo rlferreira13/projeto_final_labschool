@@ -2,6 +2,8 @@ package tech.devinhouse.labschool.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import tech.devinhouse.labschool.exception.RegistroExistenteException;
+import tech.devinhouse.labschool.exception.RegistroNaoEncontradoException;
 import tech.devinhouse.labschool.model.Aluno;
 import tech.devinhouse.labschool.model.SituacaoMatricula;
 import tech.devinhouse.labschool.repository.AlunoRepository;
@@ -19,7 +21,7 @@ public class AlunoService {
     public Aluno criar (Aluno aluno){
         boolean existe = repo.existsByCpf(aluno.getCpf());
         if (existe){
-            throw new RuntimeException("Usuário já cadastrado.");
+            throw new RegistroExistenteException("Aluno",aluno.getCpf());
         }
         aluno.setAtendimentosPedagogicos(0);
         aluno = repo.save(aluno);
@@ -29,7 +31,7 @@ public class AlunoService {
     public Aluno atualizar(Aluno aluno) {
         Optional<Aluno> alunoOpt = repo.findById(aluno.getCodigo());
         if (alunoOpt.isEmpty())
-            throw new InputMismatchException("Perfil não encontrado");
+            throw new RegistroNaoEncontradoException("Aluno", aluno.getCodigo());
         Aluno alunoBD = alunoOpt.get();
         alunoBD.setSituacao(aluno.getSituacao());
         repo.save(alunoBD);
@@ -48,7 +50,7 @@ public class AlunoService {
     }
     public void deletarAluno(Integer codigo) {
         if (!repo.existsById(codigo))
-            throw new InputMismatchException("Aluno não existe");
+            throw new RegistroNaoEncontradoException("Aluno",codigo);
         repo.deleteById(codigo);
     }
 }

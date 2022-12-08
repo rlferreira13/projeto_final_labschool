@@ -3,6 +3,7 @@ package tech.devinhouse.labschool.service;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import tech.devinhouse.labschool.exception.RegistroNaoEncontradoException;
 import tech.devinhouse.labschool.model.Aluno;
 import tech.devinhouse.labschool.model.Pedagogo;
 import tech.devinhouse.labschool.model.SituacaoMatricula;
@@ -23,8 +24,8 @@ public class AtendimentoPedagogicoService {
     private AlunoRepository alunoRepository;
 
     public Boolean cadastrarAtendimentoPedagogico(Integer codigoAluno, Integer codigoPedagogo){
-        if (!alunoRepository.existsByCodigo(codigoAluno) || !pedagogoRepository.existsByCodigo(codigoPedagogo)){
-            throw new RuntimeException("Não há registros de usuários com esse ID");
+        if (!alunoRepository.existsByCodigo(codigoAluno)){
+            throw new RegistroNaoEncontradoException("Aluno",codigoAluno);
         }
         Aluno aluno = alunoRepository.findById(codigoAluno).get();
         aluno.setSituacao(SituacaoMatricula.ATENDIMENTO_PEDAGOGICO);
