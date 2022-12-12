@@ -7,7 +7,7 @@ import tech.devinhouse.labschool.exception.RegistroNaoEncontradoException;
 import tech.devinhouse.labschool.model.Aluno;
 import tech.devinhouse.labschool.model.SituacaoMatricula;
 import tech.devinhouse.labschool.repository.AlunoRepository;
-import java.util.InputMismatchException;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -43,9 +43,15 @@ public class AlunoService {
 
     public List<Aluno> listarAlunosPorSituacao (String situacao){
         SituacaoMatricula situacaomatricula = SituacaoMatricula.valueOf(situacao.toUpperCase());
+        List<Aluno> alunoOpt = repo.findBySituacao(situacaomatricula);
+        if (alunoOpt.isEmpty())
+            throw new RegistroNaoEncontradoException("Aluno", situacao);
         return repo.findBySituacao(situacaomatricula);
     }
-    public Aluno listarAlunosPorId(Integer codigo) {
+    public Aluno listarAlunoPorId(Integer codigo) {
+        Optional<Aluno> alunopOpt = Optional.ofNullable(repo.findByCodigo(codigo));
+        if (alunopOpt.isEmpty())
+            throw new RegistroNaoEncontradoException("Aluno", codigo);
         return repo.findByCodigo(codigo);
     }
     public void deletarAluno(Integer codigo) {

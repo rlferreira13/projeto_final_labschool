@@ -29,7 +29,7 @@ public class AlunoController {
         Aluno aluno = mapper.map (request, Aluno.class);
         aluno = service.criar(aluno);
         AlunoResponse resp = mapper.map (aluno, AlunoResponse.class);
-        return ResponseEntity.created(URI.create(resp.getCodigo().toString())).body(resp)   ;
+        return ResponseEntity.created(URI.create(resp.getCodigo().toString())).body(resp);
     }
     @PutMapping("{codigo}")
     public ResponseEntity<AlunoResponse> atualizar(@PathVariable("codigo")Integer codigo, @RequestBody @Valid MatriculaRequest situacao) {
@@ -55,7 +55,7 @@ public class AlunoController {
     }
     @GetMapping("{codigo}")
     public ResponseEntity<AlunoResponse> listarAlunos(@PathVariable("codigo")  Integer codigo){
-        Aluno aluno = service.listarAlunosPorId(codigo);
+        Aluno aluno = service.listarAlunoPorId(codigo);
         AlunoResponse resp = mapper.map(aluno, AlunoResponse.class);
         return ResponseEntity.ok(resp);
     }
